@@ -1,75 +1,78 @@
-import styled from 'styled-components'
-const RollDice = () => {
-    const boxValue = [1, 2, 3, 4, 5, 6];
-    return (
-        <Header>
-            <div className='score'>
-                <h1>0</h1>
-                <p>Total Score</p>
-            </div>
-            <div className='box'>
-                {
-                    boxValue.map((curValue, index) => (
+import styled from "styled-components"
+import Button from "../components/Button.jsx"
+import { useState } from "react"
 
-                        <Box key={index}>{curValue}</Box>
-                    ))
-                }
-                <br />
-                <div>
-                    <h1>Select Number</h1>
-                </div>
+const RollDice=({selectedNumber,setScore,setSelectedNumber,setError,setGuidelines})=>
+{
+    const [currentDice,setCurrentDice]=useState(1);
+
+    const generateRandomNumber=(min,max)=>
+    {
+        return Math.floor(Math.random()*  (max - min + 1) + min);
+    }
+
+    const rollDice=()=>
+    {
+        if(!selectedNumber) {
+            console.log("error");
+            setError("You have not selected any number");
+            return 
+        }
+        setError("");
+        const randomNumber=generateRandomNumber(1,6);
+     console.log(randomNumber)
+        setCurrentDice(randomNumber);
+        if(randomNumber === selectedNumber)
+        {
+            setScore((prev)=>prev+randomNumber);
+            console.log("matched");
+        }
+        else{
+            setScore((prev)=>prev-2);
+            console.log("not matched");
+        }
+        setSelectedNumber(undefined);
+    }
+
+    return(
+        <>
+        <Dice >
+            <div onClick={rollDice}>
+            <img src={`/images/dice_${currentDice}.png`} alt="" />
             </div>
-        </Header>
+            <p>Click on Dice to Roll</p>
+            <Button text="Reset Score" bg={false} onClick={()=>{setScore(0)}
+            }></Button>
+            <Button text="Show Rules" bg={true} onClick={()=>{setGuidelines((prev)=>!prev)}}></Button>
+        </Dice>
+        
+        </>
     )
 }
-const Header = styled.div`
-max-width:1280px;
-heigth:150px;
-border:1px solid red;
-margin:0 auto;
+const Dice=styled.div`
 display:flex;
-align-items:center;
-
-.score
-{
-border:1px solid black;
-displat:flex;
 flex-direction:column;
-width:135px;
-padding:6.5px 0 6.5px 0;
-}
-.score h1
-{
-text-align:center;
-font-size:100px
-}
-.score p
-{
-font-size:24px
-}
-.box
-{
-display:flex;
-gap:24px;
-border:3px solid red;
-align-items:center;
-}
-`;
-const Box = styled.div`
-width:72px;
-height:72px;
-border:2px solid black;
-text-align:center;
-display:flex;
-align-items:center;
 justify-content:center;
-font-size:24px;
-font-weight:500
-gap:24px;
+align-items:center;
+height:450px;
+width:250px;
 
-h1
+img
 {
-font-size:24px;
-font-weight:600;
-}`;
+width:250px;
+height:250px;}
+
+p
+{
+text-align:center;
+font-size:22px;
+font-weight:500;
+}
+
+Button
+{
+margin-top:24px
+}
+
+`
 export default RollDice

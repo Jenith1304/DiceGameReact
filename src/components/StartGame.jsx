@@ -22,6 +22,7 @@ align-items:center;
 
 .content h1
 {
+white-space:nowrap;
 font-size:96px 
 }
 .content button

@@ -3,7 +3,9 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import StartGame from './components/StartGame'
-import RollDice from './components/RollDice'
+// import RollDice from './components/RollDice'
+import ScoreTotal from './components/ScoreTotal'
+import Guidelines from './components/Guidelines'
 function App() {
   const [isSelected, setSelected] = useState(false);
   const toggle = () => {
@@ -12,7 +14,7 @@ function App() {
   }
   return (
     <>
-      {isSelected ? <RollDice /> : <StartGame toggle={toggle} />}
+      {isSelected ? <ScoreTotal /> : <StartGame toggle={toggle} />}
     </>
   )
 }
