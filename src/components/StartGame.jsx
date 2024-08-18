@@ -4,7 +4,7 @@ const StartGame = ({ toggle }) => {
     return (
         <Container>
             <div>
-                <img src="/images/dices 1.png" alt="Dice image" />
+                <img src={`${import.meta.env.BASE_URL}images/dices 1.png`} alt="Dice image" />
             </div>
             <div className='content'>
                 <h1>DICE GAME</h1>

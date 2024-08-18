@@ -38,7 +38,7 @@ const RollDice=({selectedNumber,setScore,setSelectedNumber,setError,setGuideline
         <>
         <Dice >
             <div onClick={rollDice}>
-            <img src={`/images/dice_${currentDice}.png`} alt="" />
+            <img src={`${import.meta.env.BASE_URL}images/dice_${currentDice}.png`} alt="" />
             </div>
             <p>Click on Dice to Roll</p>
             <Button text="Reset Score" bg={false} onClick={()=>{setScore(0)}
